@@ -71,3 +71,4 @@ public class Payment {
     @Column(nullable = false)
     private Instant updatedAt;
 }
+
