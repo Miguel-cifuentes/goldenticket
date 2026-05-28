@@ -3,8 +3,11 @@ package com.example.goldenticket2.service.impl;
 import com.example.goldenticket2.entity.Ticket;
 import com.example.goldenticket2.service.PdfService;
 import com.example.goldenticket2.service.QrService;
+import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.colors.ColorConstants;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
@@ -37,13 +40,17 @@ public class PdfServiceImpl implements PdfService {
             PdfDocument pdf = new PdfDocument(writer);
             Document document = new Document(pdf);
             byte[] qr = qrService.generatePng(ticket.getQrCode(), 240, 240);
+            PdfFont boldFont = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD);
 
             document.add(new Paragraph("GoldenTicket")
                     .setFontSize(24)
-                    .setBold()
+                    .setFont(boldFont)
                     .setFontColor(ColorConstants.ORANGE)
                     .setTextAlignment(TextAlignment.CENTER));
-            document.add(new Paragraph(ticket.getEvent().getName()).setFontSize(18).setBold().setTextAlignment(TextAlignment.CENTER));
+            document.add(new Paragraph(ticket.getEvent().getName())
+                    .setFontSize(18)
+                    .setFont(boldFont)
+                    .setTextAlignment(TextAlignment.CENTER));
             document.add(new Paragraph("Ticket: " + ticket.getTicketNumber()).setTextAlignment(TextAlignment.CENTER));
             document.add(new Paragraph("Attendee: " + ticket.getOwner().getFullName()));
             document.add(new Paragraph("Date: " + ticket.getEvent().getEventDate()));

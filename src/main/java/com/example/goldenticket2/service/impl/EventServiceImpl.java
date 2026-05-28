@@ -85,7 +85,7 @@ public class EventServiceImpl implements EventService {
     private void applyTicketTypes(Event event, EventRequest request) {
         if (request.ticketTypes() == null || request.ticketTypes().isEmpty()) {
             TicketType defaultType = TicketType.builder()
-                    .category(com.eventix.entity.TicketCategory.GENERAL)
+                    .category(com.example.goldenticket2.entity.TicketCategory.GENERAL)
                     .price(request.price())
                     .stock(request.capacity())
                     .availableStock(request.capacity())

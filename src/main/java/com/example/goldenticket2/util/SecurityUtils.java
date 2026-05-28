@@ -1,7 +1,7 @@
 package com.example.goldenticket2.util;
 
-import com.eventix.entity.User;
-import com.eventix.security.SecurityUser;
+import com.example.goldenticket2.entity.User;
+import com.example.goldenticket2.security.SecurityUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
