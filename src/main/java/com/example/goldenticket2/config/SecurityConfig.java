@@ -39,7 +39,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/events/**").hasAnyRole("ADMIN", "ORGANIZER")
                         .requestMatchers(HttpMethod.PUT, "/api/events/**").hasAnyRole("ADMIN", "ORGANIZER")
                         .requestMatchers(HttpMethod.DELETE, "/api/events/**").hasAnyRole("ADMIN", "ORGANIZER")
+                        .requestMatchers(HttpMethod.GET, "/api/payments/redirect").permitAll()
                         .anyRequest().authenticated()
+
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
@@ -54,4 +56,6 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
+
+
 }

@@ -40,12 +40,13 @@ public class WompiServiceImpl implements WompiService {
     @Override
     public String buildCheckoutUrl(Payment payment) {
         String signature = sha256(payment.getReference() + payment.getAmountInCents() + "COP" + integritySecret);
+
         return "https://checkout.wompi.co/p/?" +
                 "public-key=" + encode(publicKey) +
                 "&currency=COP" +
                 "&amount-in-cents=" + payment.getAmountInCents() +
                 "&reference=" + encode(payment.getReference()) +
-                "&signature:integrity=" + signature +
+                "&signature%3Aintegrity=" + signature +
                 "&redirect-url=" + encode(redirectUrl);
     }
 

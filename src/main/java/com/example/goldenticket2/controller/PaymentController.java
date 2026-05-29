@@ -42,4 +42,9 @@ public class PaymentController {
     public ResponseEntity<PaymentResponse> verify(@PathVariable String transactionId) {
         return ResponseEntity.ok(paymentService.verifyPayment(transactionId));
     }
+
+    @GetMapping("/redirect")
+    public ResponseEntity<String> redirect() {
+        return ResponseEntity.ok("Pago procesado. Puedes cerrar esta ventana.");
+    }
 }
